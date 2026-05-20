@@ -7,13 +7,23 @@ import {
 
 function CartItem() {
 
+  const dispatch = useDispatch();
+
   const cartItems = useSelector(
     (state) => state.cart.cartItems
   );
 
-  const dispatch = useDispatch();
+  const totalItems = cartItems.reduce(
+    (acc, item) => acc + item.quantity,
+    0
+  );
 
-  const increaseQty = (item) => {
+  const totalCost = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
+  const increaseQuantity = (item) => {
 
     dispatch(
       updateQuantity({
@@ -23,7 +33,7 @@ function CartItem() {
     );
   };
 
-  const decreaseQty = (item) => {
+  const decreaseQuantity = (item) => {
 
     if (item.quantity > 1) {
 
@@ -36,51 +46,54 @@ function CartItem() {
     }
   };
 
-  const total = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
-
   return (
+
     <div className="cart-container">
 
       <h1>Shopping Cart</h1>
+
+      <h2>Total Cart Items: {totalItems}</h2>
+
+      <h2>Total Cost: ₹ {totalCost}</h2>
 
       {cartItems.map((item) => (
 
         <div className="cart-card" key={item.id}>
 
-          <img src={item.image} alt={item.name} />
+          <img
+            src={item.image}
+            alt={item.name}
+          />
 
           <div>
 
             <h2>{item.name}</h2>
 
-            <p>₹ {item.price}</p>
+            <p>Price: ₹ {item.price}</p>
 
-            <div className="qty-section">
+            <p>Quantity: {item.quantity}</p>
 
-              <button
-                onClick={() => decreaseQty(item)}
-              >
-                -
-              </button>
-
-              <span>{item.quantity}</span>
+            <div className="quantity-buttons">
 
               <button
-                onClick={() => increaseQty(item)}
+                onClick={() => increaseQuantity(item)}
               >
                 +
+              </button>
+
+              <button
+                onClick={() => decreaseQuantity(item)}
+              >
+                -
               </button>
 
             </div>
 
             <button
-              className="remove-btn"
+              className="delete-btn"
               onClick={() => dispatch(removeItem(item.id))}
             >
-              Remove
+              Delete
             </button>
 
           </div>
@@ -89,10 +102,17 @@ function CartItem() {
 
       ))}
 
-      <h2>Total: ₹ {total}</h2>
+      <button className="checkout-btn">
+        Checkout
+      </button>
+
+      <button className="continue-btn">
+        Continue Shopping
+      </button>
 
     </div>
-  );
+
+  )
 }
 
-export default CartItem;
+export default CartItem

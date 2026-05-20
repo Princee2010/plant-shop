@@ -7,21 +7,26 @@ import CartItem from './components/CartItem'
 function App() {
 
   return (
-    <div className="container">
 
-      <div className="overlay">
+    <div>
 
-        <h1 className="company-name">
-          Plant Paradise
-        </h1>
+      <div className="landing-page">
 
-        <p className="tagline">
-          Best Indoor Plants Collection
-        </p>
+        <div className="overlay">
 
-        <button className="btn">
-          Get Started
-        </button>
+          <h1 className="company-name">
+            Paradise Nursery
+          </h1>
+
+          <p className="tagline">
+            Bring Nature Closer To Your Home
+          </p>
+
+          <button className="get-started-btn">
+            Get Started
+          </button>
+
+        </div>
 
       </div>
 
@@ -32,6 +37,7 @@ function App() {
       <CartItem />
 
     </div>
+
   )
 }
 
