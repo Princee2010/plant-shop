@@ -1,26 +1,40 @@
 import './App.css'
 
+import AboutUs from './components/AboutUs'
+import ProductList from './components/ProductList'
+import CartItem from './components/CartItem'
+
 function App() {
 
   return (
 
-    <div className="landing-page">
+    <div>
 
-      <div className="overlay">
+      <div className="landing-page">
 
-        <h1 className="company-name">
-          Paradise Nursery
-        </h1>
+        <div className="overlay">
 
-        <p className="tagline">
-          Bring Nature Into Your Home
-        </p>
+          <h1 className="company-name">
+            Paradise Nursery
+          </h1>
 
-        <button className="get-started-btn">
-          Get Started
-        </button>
+          <p className="tagline">
+            Bring Nature Into Your Home
+          </p>
+
+          <button className="get-started-btn">
+            Get Started
+          </button>
+
+        </div>
 
       </div>
+
+      <AboutUs />
+
+      <ProductList />
+
+      <CartItem />
 
     </div>
 

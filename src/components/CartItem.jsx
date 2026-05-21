@@ -52,7 +52,7 @@ function CartItem() {
 
       <h1>Shopping Cart</h1>
 
-      <h2>Total Items: {totalItems}</h2>
+      <h2>Total Cart Items: {totalItems}</h2>
 
       <h2>Total Cost: ₹ {totalCost}</h2>
 
@@ -78,12 +78,12 @@ function CartItem() {
 
               <h2>{item.name}</h2>
 
-              <p>Price: ₹ {item.price}</p>
+              <p>Unit Price: ₹ {item.price}</p>
 
               <p>Quantity: {item.quantity}</p>
 
               <p>
-                Total:
+                Subtotal:
                 ₹ {item.price * item.quantity}
               </p>
 
@@ -107,7 +107,7 @@ function CartItem() {
                 className="delete-btn"
                 onClick={() => dispatch(removeItem(item.id))}
               >
-                Remove
+                Remove Item
               </button>
 
             </div>
