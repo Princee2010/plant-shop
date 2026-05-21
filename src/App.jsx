@@ -19,7 +19,7 @@ function App() {
           </h1>
 
           <p className="tagline">
-            Bring Nature Closer To Your Home
+            Bring Nature Into Your Home
           </p>
 
           <button className="get-started-btn">

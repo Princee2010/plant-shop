@@ -56,51 +56,67 @@ function CartItem() {
 
       <h2>Total Cost: ₹ {totalCost}</h2>
 
-      {cartItems.map((item) => (
+      {cartItems.length === 0 ? (
 
-        <div className="cart-card" key={item.id}>
+        <h3>Your cart is empty</h3>
 
-          <img
-            src={item.image}
-            alt={item.name}
-          />
+      ) : (
 
-          <div>
+        cartItems.map((item) => (
 
-            <h2>{item.name}</h2>
+          <div
+            className="cart-card"
+            key={item.id}
+          >
 
-            <p>Price: ₹ {item.price}</p>
+            <img
+              src={item.image}
+              alt={item.name}
+            />
 
-            <p>Quantity: {item.quantity}</p>
+            <div>
 
-            <div className="quantity-buttons">
+              <h2>{item.name}</h2>
+
+              <p>Price: ₹ {item.price}</p>
+
+              <p>Quantity: {item.quantity}</p>
+
+              <p>
+                Total:
+                ₹ {item.price * item.quantity}
+              </p>
+
+              <div className="quantity-buttons">
+
+                <button
+                  onClick={() => increaseQuantity(item)}
+                >
+                  +
+                </button>
+
+                <button
+                  onClick={() => decreaseQuantity(item)}
+                >
+                  -
+                </button>
+
+              </div>
 
               <button
-                onClick={() => increaseQuantity(item)}
+                className="delete-btn"
+                onClick={() => dispatch(removeItem(item.id))}
               >
-                +
-              </button>
-
-              <button
-                onClick={() => decreaseQuantity(item)}
-              >
-                -
+                Delete
               </button>
 
             </div>
 
-            <button
-              className="delete-btn"
-              onClick={() => dispatch(removeItem(item.id))}
-            >
-              Delete
-            </button>
-
           </div>
 
-        </div>
+        ))
 
-      ))}
+      )}
 
       <button className="checkout-btn">
         Checkout
